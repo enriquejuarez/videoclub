@@ -4,10 +4,10 @@
 	   <div class="offset-md-3 col-md-6">
 	      <div class="card">
 	         <div class="card-header text-center">
-	            Modificar película
+	            Añadir película
 	         </div>
 	         <div class="card-body" style="padding:30px">
-			 	<form action="#">
+			 	<form action="#" method="POST">
 			 		@csrf
 		            <div class="form-group">
 		               <label for="title">Título</label>
@@ -36,7 +36,7 @@
 
 		            <div class="form-group text-center">
 		               <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-		                   Modificar película
+		                   Añadir película
 		               </button>
 		            </div>
 				</form>	
