@@ -1,6 +1,7 @@
 <?php
 
 use App\Movie;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -167,6 +168,19 @@ class DatabaseSeeder extends Seeder
                 'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
             )
         );
+    public $arrayUsuarios = array(
+            array(
+                'name' => 'Carlos Enrique',
+                'email' => 'caenjuji@gmail.com', 
+                'password' => '123' 
+            ),
+            array(
+                'name' => 'Carlos Armando',
+                'email' => 'caenjuji2@gmail.com', 
+                'password' => '123'
+                
+            )
+        );
     /**
      * Seed the application's database.
      *
@@ -175,13 +189,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         self::seedCatalog();
-        $this->command->info('Tabla catálogo iniciada con datos');
+        self::seedUsers();
+        $this->command->info('Tabla catálogo y usuarios inicializadas con datos');
     }
 
     private function seedCatalog()
     {
     	DB::table('movies')->delete();
-    	foreach ($this->arrayPeliculas as $pelicula) {
+    	foreach ($this->arrayPeliculas as $pelicula) 
+        {
     		$p = new Movie;
     		$p->title = $pelicula['title'];
     		$p->year = $pelicula['year'];
@@ -191,5 +207,18 @@ class DatabaseSeeder extends Seeder
     		$p->synopsis = $pelicula['synopsis'];
     		$p->save();
     	}
+    }
+
+    private function seedUsers()
+    {
+        DB::table('users')->delete();
+        foreach ($this->arrayUsuarios as $usuario) 
+        {
+            $p = new User;
+            $p->name = $usuario['name'];
+            $p->email = $usuario['email'];
+            $p->password = bcrypt($usuario['password']);
+            $p->save();
+        }
     }
 }

@@ -10,8 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        @if( true || Auth::check() )
-            <!-- Collect the nav links, forms, and other content for toggling -->
+        @if( Auth::check() )
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
@@ -26,17 +25,25 @@
                         </a>
                     </li>
                 </ul>
+        @endif
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <form class="" action="{{ url('/logout') }}" method="POST" style="display:inline">
-                            {{ csrf_field() }}
-                           <button type="submit" class="btn btn-link" style="display:inline;cursor:pointer">
-                               Cerrar sesión
-                           </button>
-                        </form>
-                    </li>
+                    @if( Auth::check() )   
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link" style="display:inline;cursor:pointer">
+                                        Cerrar sesión
+                                    </button>
+                                </form>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                    @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
-        @endif
     </div>
 </nav>

@@ -37,7 +37,15 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelicula           = new Movie;
+        $pelicula->title    = $request->input('title');
+        $pelicula->year     = $request->input('year');
+        $pelicula->director = $request->input('director');
+        $pelicula->poster   = $request->input('poster');
+        $pelicula->synopsis = $request->input('synopsis');
+        $pelicula->save();
+
+        return redirect('/catalog');
     }
 
     /**
@@ -73,7 +81,15 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pelicula           = Movie::findOrFail($id);
+        $pelicula->title    = $request->input('title');
+        $pelicula->year     = $request->input('year');
+        $pelicula->director = $request->input('director');
+        $pelicula->poster   = $request->input('poster');
+        $pelicula->synopsis = $request->input('synopsis');
+        $pelicula->save();
+
+        return redirect('/catalog/show/'.$id);
     }
 
     /**
