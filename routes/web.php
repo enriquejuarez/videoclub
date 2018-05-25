@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('catalog/create', 'CatalogController@create');
 	Route::post('catalog/create', 'CatalogController@store');
 	Route::get('catalog/edit/{id}', 'CatalogController@edit');	
-	Route::put('catalog/edit/{id}', 'CatalogController@update');	
+	Route::put('catalog/edit/{id}', 'CatalogController@update');
+	Route::delete('catalog/delete/{id}', function(){ return ("Llefa aqui");});	
 });
 
 /*Route::get('catalog', 'CatalogController@index');

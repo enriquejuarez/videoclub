@@ -13,9 +13,10 @@
 			<p><b>Resumen: </b>{{ $pelicula->synopsis }}</p><br>
 			<p><b>Estado: </b>{{ $pelicula->rented===1 ? "Película actualmente alquilada" : "Película disponible" }}</p><br>
 			<p>
-				<a class="btn btn-danger btn-lg" href="#" role="button">Devolver película</a>
-				<a class="btn btn-warning btn-lg" href="{{ url('/catalog/edit/' . $pelicula->id ) }}" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar película</a>
-				<a class="btn btn-default btn-lg" href="{{ url('/catalog') }}" role="button"><span class="glyphiconglyphicon-fast-backward" aria-hidden="true"></span>Volver al listado</a>
+				<a class="btn btn-primary" href="#" role="button">Devolver película</a>
+				<a class="btn btn-warning" href="{{ url('/catalog/edit/' . $pelicula->id ) }}" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar película</a>
+				<a class="btn btn-danger" href="{{ url('/catalog/delete/' . $pelicula->id ) }}" role="button"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Eliminar película</a>
+				<a class="btn btn-default" href="{{ url('/catalog') }}" role="button"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Volver al listado</a>
 			</p>
 		</div>
 	</div>

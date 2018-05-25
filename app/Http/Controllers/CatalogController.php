@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Notification;
+/*use Krucas\Notification\Facades\Notification;*/
 
 class CatalogController extends Controller
 {
@@ -44,7 +47,7 @@ class CatalogController extends Controller
         $pelicula->poster   = $request->input('poster');
         $pelicula->synopsis = $request->input('synopsis');
         $pelicula->save();
-
+        /*Notification::success('Success message');*/
         return redirect('/catalog');
     }
 
@@ -88,6 +91,7 @@ class CatalogController extends Controller
         $pelicula->poster   = $request->input('poster');
         $pelicula->synopsis = $request->input('synopsis');
         $pelicula->save();
+       /*\Krucas\Notification\Facades\Notification::success('Success message');*/
 
         return redirect('/catalog/show/'.$id);
     }
@@ -100,6 +104,11 @@ class CatalogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Log::error("Lega a este punto");
+        dd("Leega");
+        $pelicula = Movie::findOrFail($id);
+        $pelicula->delete();
+
+        return redirect('/catalog');
     }
 }
